@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">Bloom Room</string>
+    <string name="title_name">Bloom Room</string>
+    <string name="email_input_label">Email address</string>
+    <string name="email_hint">Email Address</string>
+    <string name="password_hint">Password</string>
+    <string name="forget_password">Forget password</string>
+    <string name="login_text">Login</string>
+    <string name="do_not_have_account">Don\'t have an account?</string>
+    <string name="sign_in">\ Sign in</string>
+    <string name="confirm_password_hint">Confirm Password</string>
+    <string name="name_hint">Full Name</string>
+    <string name="already_have_an_account">Already have an account?\ </string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_account">Account</string>
+    <string name="bloom_room">BLOOMROOM</string>
+    <string name="title_orders">Orders</string>
+    <string name="title_category">Category</string>
+    <string name="title_activity_admin_home">AdminHomeActivity</string>
+    <string name="title_add_content">Add Content</string>
+    <string name="title_activity_category_add">CategoryAddActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+</resources>

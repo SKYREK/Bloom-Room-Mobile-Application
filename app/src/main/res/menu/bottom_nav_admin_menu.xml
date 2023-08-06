@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/navigation_admin_home"
+        android:icon="@drawable/home_unselected"
+        android:title="@string/title_home" />
+
+    <item
+        android:id="@+id/navigation_admin_category"
+        android:icon="@drawable/categories_unselected"
+        android:title="@string/title_dashboard" />
+    <item
+        android:id="@+id/navigation_admin_add_content"
+        android:icon="@drawable/add_unselected"
+        android:title="@string/title_add_content" />
+    <item
+        android:id="@+id/navigation_admin_orders"
+        android:icon="@drawable/order_unselected"
+        android:title="@string/title_account" />
+
+    <item
+        android:id="@+id/navigation_admin_account"
+        android:icon="@drawable/user_unselected"
+        android:title="@string/title_account" />
+
+</menu>

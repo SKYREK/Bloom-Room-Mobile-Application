@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "505381280771",
+    "project_id": "bloom-room-3e2b2",
+    "storage_bucket": "bloom-room-3e2b2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:505381280771:android:f0b47d5a87f3666fad0236",
+        "android_client_info": {
+          "package_name": "com.example.bloomroom"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "505381280771-3j1gaaom52m0sm2ou975ej055rkv7jrd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.bloomroom",
+            "certificate_hash": "a49f1ffb7556f93c6bce5a0489cd74f8b04e2cd1"
+          }
+        },
+        {
+          "client_id": "505381280771-sihbu9fi1qgte0pfpbcl2uum5tv49l18.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDSMje1o9pngSqqlV0ADj8e2aYB21uG808"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "505381280771-sihbu9fi1qgte0pfpbcl2uum5tv49l18.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

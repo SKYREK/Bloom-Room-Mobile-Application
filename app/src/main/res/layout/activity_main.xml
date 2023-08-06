@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/primary_green"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/flower_one"
+        android:layout_width="311dp"
+        android:layout_height="194dp"
+        android:layout_gravity="top|left"
+        android:foregroundGravity="top|left"
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/pngwing_2" />
+
+    <ImageView
+
+        android:id="@+id/flower_two"
+        android:layout_width="wrap_content"
+        android:layout_height="324dp"
+        android:layout_gravity="bottom|right"
+        android:foregroundGravity="bottom|right"
+        android:scaleType="centerCrop"
+        app:srcCompat="@drawable/pngwing_3" />
+
+    <ImageView
+        android:id="@+id/flower_home"
+        android:layout_width="229dp"
+        android:layout_height="103dp"
+        android:layout_gravity="center"
+        android:foregroundGravity="center"
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/home_logo" />
+
+</FrameLayout>

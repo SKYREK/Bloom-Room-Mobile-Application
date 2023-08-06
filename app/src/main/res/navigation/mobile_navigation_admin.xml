@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation_admin"
+    app:startDestination="@+id/navigation_admin_home">
+
+    <fragment
+        android:id="@+id/navigation_admin_home"
+        android:name="com.example.bloomroom.AdminHomeFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_admin_home" />
+
+    <fragment
+        android:id="@+id/navigation_admin_category"
+        android:name="com.example.bloomroom.AdminCategoryFragment"
+        android:label="@string/title_category"
+        tools:layout="@layout/fragment_admin_category" />
+
+    <fragment
+        android:id="@+id/navigation_admin_add_content"
+        android:name="com.example.bloomroom.AddContentFragment"
+        android:label="@string/title_add_content"
+        tools:layout="@layout/fragment_add_content" />
+    <fragment
+        android:id="@+id/navigation_admin_orders"
+        android:name="com.example.bloomroom.AdminOrderFragment"
+        android:label="@string/title_orders"
+        tools:layout="@layout/fragment_admin_order" />
+    <fragment
+        android:id="@+id/navigation_admin_account"
+        android:name="com.example.bloomroom.AdminAccountFragment"
+        android:label="@string/title_orders"
+        tools:layout="@layout/fragment_admin_account" />
+</navigation>
