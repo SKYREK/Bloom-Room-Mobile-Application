@@ -1,5 +1,6 @@
 package com.example.bloomroom;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -26,6 +27,12 @@ public class AdminHomeActivity extends AppCompatActivity {
         BottomNavigationView navView = findViewById(R.id.nav_view);
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_admin_home);
         NavigationUI.setupWithNavController(binding.navView, navController);
+        Intent intent = getIntent();
+        if (intent != null && intent.hasExtra("selectedTab")) {
+            int selectedTab = intent.getIntExtra("selectedTab", 0);
+            // Select the desired tab based on the value received from the intent
+            navView.setSelectedItemId(navView.getMenu().getItem(selectedTab).getItemId());
+        }
     }
 
 }

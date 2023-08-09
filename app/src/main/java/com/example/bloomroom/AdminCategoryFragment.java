@@ -3,10 +3,17 @@ package com.example.bloomroom;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.example.bloomroom.Adaptors.AdminCategoryAdapter;
+import com.example.bloomroom.Models.Category;
+
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -53,12 +60,31 @@ public class AdminCategoryFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_admin_category, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_admin_category, container, false);
+        RecyclerView categoryRecyclerView = rootView.findViewById(R.id.admin_category_list);
+
+        Category.getAllCategories(new Category.CategoryCallback() {
+            @Override
+            public void onCategoriesLoaded(List<Category> categoryList) {
+                categoryRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+                AdminCategoryAdapter categoryAdapter = new AdminCategoryAdapter(categoryList, getContext());
+                categoryRecyclerView.setAdapter(categoryAdapter);
+            }
+
+            @Override
+            public void onFailure(String errorMessage) {
+                // Handle the failure case if needed
+            }
+        });
+
+        return rootView;
     }
+
 }

@@ -10,23 +10,44 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="?attr/actionBarSize"
         android:background="@drawable/upper_rounded"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="?attr/actionBarSize">
+        app:layout_constraintVertical_bias="1.0">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical"
+            android:layout_gravity="center_vertical">
+
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="343dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="32dp"
+                android:height="60dp"
+                android:text="Add Flower"
+                android:textSize="18sp"
+                app:cornerRadius="15dp" />
 
             <Button
                 android:id="@+id/button"
-                android:layout_width="match_parent"
+                android:layout_width="343dp"
                 android:layout_height="wrap_content"
-                android:text="Button" />
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="32dp"
+                android:height="60dp"
+                android:text="Add Categories"
+                android:textSize="18sp"
+                app:cornerRadius="15dp" />
+
+
         </LinearLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

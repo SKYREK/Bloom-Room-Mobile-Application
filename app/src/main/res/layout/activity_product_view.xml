@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="10"
+    tools:context=".ActivityProductView">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="4"
+        android:padding="16dp">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:srcCompat="@drawable/image_upload_default" />
+
+        <ImageButton
+            android:id="@+id/backButton"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@null"
+            android:foregroundGravity="center"
+            app:srcCompat="@drawable/baseline_arrow_back_ios_24"
+            app:tint="@color/text_grey"
+            tools:layout_editor_absoluteX="48dp"
+            tools:layout_editor_absoluteY="8dp" />
+
+
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="6"
+        android:background="@drawable/upper_rounded"
+        android:backgroundTint="@color/primary_green"
+        android:orientation="vertical"
+        android:padding="33dp"
+        android:weightSum="20" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="9"
+            android:background="@drawable/bottom_border"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/nameField"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="1"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/categoryField"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_regular"
+                android:text="0"
+                android:textColor="@color/white" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:weightSum="3">
+
+                <TextView
+                    android:id="@+id/priceField"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="2"
+                    android:fontFamily="@font/poppins_bold"
+                    android:text="TextView"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
+
+                <LinearLayout
+                    android:layout_width="42dp"
+                    android:layout_height="41dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:background="#80FFFFFF"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/subButton"
+                        android:layout_width="35dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/baseline_indeterminate_check_box_24" />
+
+                    <TextView
+                        android:id="@+id/qtyField"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/poppins_bold"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textSize="18sp" />
+
+                    <ImageView
+                        android:id="@+id/addButton"
+                        android:layout_width="35dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/baseline_add_box_24" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="11"
+            android:gravity="bottom"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/poppins_bold"
+                android:text="About"
+                android:textColor="@color/white"
+                android:textSize="18dp" />
+
+            <TextView
+                android:id="@+id/aboutField"
+                android:layout_width="match_parent"
+                android:layout_height="66dp"
+                android:layout_gravity="center"
+                android:fontFamily="@font/poppins_regular"
+                android:text="TextView"
+                android:textColor="@color/white" />
+
+            <Button
+                android:id="@+id/loadHome"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:backgroundTint="@color/white"
+                android:drawableEnd="@drawable/baseline_arrow_forward_ios_24"
+                android:drawableTint="@color/primary_green"
+                android:fontFamily="@font/poppins_bold"
+                android:text="Checkout"
+                android:textColor="@color/primary_green"
+                android:textSize="18dp" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

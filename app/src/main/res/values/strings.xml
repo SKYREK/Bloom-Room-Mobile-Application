@@ -26,4 +26,10 @@
     <string name="title_activity_category_add">CategoryAddActivity</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="category_name">Category Name</string>
+    <string name="flower_name">Flower Name</string>
+    <string name="category_description">Description</string>
+    <string name="save_changes">Save changes</string>
+    <string name="flower_About">About</string>
+    <string name="category_price">Price</string>
 </resources>

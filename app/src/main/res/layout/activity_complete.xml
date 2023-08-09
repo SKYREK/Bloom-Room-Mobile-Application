@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/primary_green"
+    tools:context=".CompleteActivity">
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/thankyou" /> <!-- Maintain aspect ratio -->
+    <Button
+        android:id="@+id/loadHome"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_gravity="bottom"
+        android:layout_margin="16dp"
+        android:backgroundTint="@color/white"
+        android:drawableEnd="@drawable/baseline_arrow_forward_ios_24"
+        android:drawableTint="@color/primary_green"
+        android:fontFamily="@font/poppins_bold"
+        android:text="Back to shopping"
+        android:textColor="@color/primary_green"
+        android:textSize="18dp" />
+
+</FrameLayout>

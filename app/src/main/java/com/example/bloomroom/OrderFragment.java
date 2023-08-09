@@ -5,11 +5,21 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.example.bloomroom.Adaptors.CategoryAdapter;
+import com.example.bloomroom.Adaptors.OrderAdapter;
+import com.example.bloomroom.Models.Category;
+import com.example.bloomroom.Models.Order;
+import com.google.firebase.auth.FirebaseAuth;
+
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -58,20 +68,33 @@ public class OrderFragment extends Fragment {
         }
     }
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_order, container, false);
-    }
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+        View rootView = inflater.inflate(R.layout.fragment_order, container, false);
+        RecyclerView orderRecycleView = rootView.findViewById(R.id.customer_order_view);
 
-        // Find the TextView from the activity layout
+        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        Order.getOrdersByUserId(uid,new Order.OrderCallback() {
+            @Override
+            public void onOrdersLoaded(List<Order> orderList) {
+                orderRecycleView.setLayoutManager(new LinearLayoutManager(getContext()));
+                OrderAdapter orderAdapter = new OrderAdapter(orderList, getContext());
+                orderRecycleView.setAdapter(orderAdapter);
+            }
+
+            @Override
+            public void onFailure(String errorMessage) {
+                // Handle the failure case if needed
+            }
+        });
         TextView title = requireActivity().findViewById(R.id.toolbar_title);
         if (title != null) {
             title.setText("My Orders");
         }
+        return rootView;
     }
+
 }

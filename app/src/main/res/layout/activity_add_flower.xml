@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/rounded_edittext_background"
-    tools:context=".AddCategoryActivity">
+    tools:context=".AddFlowerActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="@font/poppins_medium"
-            android:text="Add Category"
+            android:text="Add Flower"
             android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold"
@@ -107,7 +107,7 @@
                     android:layout_marginRight="44dp"
                     android:background="@drawable/rounded_edittext_background"
                     android:fontFamily="@font/poppins_medium"
-                    android:hint="@string/category_name" />
+                    android:hint="@string/flower_name" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -124,7 +124,35 @@
                     android:layout_marginRight="44dp"
                     android:background="@drawable/rounded_edittext_background"
                     android:fontFamily="@font/poppins_medium"
-                    android:hint="@string/category_description" />
+                    android:hint="@string/category_price" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Spinner
+                android:id="@+id/categorySpinner"
+                android:layout_width="310dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="44dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="44dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/rounded_edittext_background" />
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:padding="5dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/aboutField"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="44dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="44dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="@drawable/rounded_edittext_background"
+                    android:fontFamily="@font/poppins_medium"
+                    android:hint="@string/flower_About" />
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
 

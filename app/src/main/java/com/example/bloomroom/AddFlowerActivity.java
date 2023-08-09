@@ -5,63 +5,80 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.bloomroom.Adaptors.CategorySpinnerAdapter;
 import com.example.bloomroom.Models.Category;
+import com.example.bloomroom.Models.Flower;
 import com.example.bloomroom.Utils.ImageUploader;
 import com.example.bloomroom.Utils.ImageUtils;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-public class AddCategoryActivity extends AppCompatActivity {
+import java.util.List;
 
-    public static final String NAMEFLAG = "category_name";
-    public static final String DESCRIPTIONFLAG = "category_description";
-    public static final String IMAGEFLAG = "category_image";
-    public static final String IDFLAG = "category_id";
+public class AddFlowerActivity extends AppCompatActivity {
 
-    private ImageUploader imageUploader;
+    ImageButton backButton;
+    public static final String NAMEFLAG = "flower_name";
+    public static final String ABOUTFLAG = "flower_description";
+    public static final String IMAGEFLAG = "flower_image";
+    public static final String IDFLAG = "flower_id";
+    public static final String PRICEFLAG = "flower_price";
+    public static  final String CATEGORYFLAG = "flower_category";
     private String imgLink = "";
-
-    private TextInputEditText nameField;
-    private TextInputEditText descriptionField;
-
-    private ImageButton backButton;
-
     private boolean isUpdating = false;
 
-    String categoryId = "";
-    String categoryName = "";
-    String categoryDescription = "";
+    private TextInputEditText nameField;
+    private TextInputEditText aboutField;
+    private TextInputEditText priceField;
+    private Spinner spinner;
+    String flowerId = "";
+
+    ImageUploader imageUploader;
 
 
-    Button button;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_category);
-        imageUploader = new ImageUploader();
+        setContentView(R.layout.activity_add_flower);
+        spinner = (Spinner) findViewById(R.id.categorySpinner);
         nameField = findViewById(R.id.nameField);
-        descriptionField = findViewById(R.id.priceField);
+        aboutField = findViewById(R.id.aboutField);
+        priceField = findViewById(R.id.priceField);
+        imageUploader = new ImageUploader();
+        Category.getAllCategories(new Category.CategoryCallback() {
+            @Override
+            public void onCategoriesLoaded(List<Category> categoryList) {
+                CategorySpinnerAdapter adapter = new CategorySpinnerAdapter(AddFlowerActivity.this, categoryList);
+                spinner.setAdapter(adapter);
+
+            }
+
+            @Override
+            public void onFailure(String errorMessage) {
+                Toast.makeText(AddFlowerActivity.this, errorMessage, Toast.LENGTH_SHORT).show();
+            }
+        });
         backButton = findViewById(R.id.backButton);
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AddCategoryActivity.super.onBackPressed();
+                AddFlowerActivity.super.onBackPressed();
             }
         });
-
-        // Check if the intent has an extra with the category ID
         if (getIntent().hasExtra(IDFLAG)) {
-            // If it does, then we are updating an existing category
+
             isUpdating = true;
-            // Get the category ID from the intent
-            categoryId = getIntent().getStringExtra(IDFLAG);
+
+            flowerId = getIntent().getStringExtra(IDFLAG);
             nameField.setText(getIntent().getStringExtra(NAMEFLAG));
-            descriptionField.setText(getIntent().getStringExtra(DESCRIPTIONFLAG));
+            aboutField.setText(getIntent().getStringExtra(ABOUTFLAG));
+            priceField.setText(String.valueOf(getIntent().getStringExtra(PRICEFLAG)));
             imgLink = getIntent().getStringExtra(IMAGEFLAG);
             ImageUtils.loadImageFromUrl(this, getIntent().getStringExtra(IMAGEFLAG), findViewById(R.id.imageView));
         }
@@ -77,15 +94,15 @@ public class AddCategoryActivity extends AppCompatActivity {
             public void onImageUploadComplete(String imageUrl) {
                 // Update the imgLink variable with the image URL
                 imgLink = imageUrl;
-                ImageUtils.loadImageFromUrl(AddCategoryActivity.this, imageUrl, findViewById(R.id.imageView));
+                ImageUtils.loadImageFromUrl(AddFlowerActivity.this, imageUrl, findViewById(R.id.imageView));
                 // Do any other processing with the image URL here
-                Toast.makeText(AddCategoryActivity.this, "Image uploaded successfully: " + imageUrl, Toast.LENGTH_SHORT).show();
+                Toast.makeText(AddFlowerActivity.this, "Image uploaded successfully: " + imageUrl, Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onImageUploadFailed(String errorMessage) {
                 // Handle the error if the image upload fails
-                Toast.makeText(AddCategoryActivity.this, "Image upload failed: " + errorMessage, Toast.LENGTH_SHORT).show();
+                Toast.makeText(AddFlowerActivity.this, "Image upload failed: " + errorMessage, Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -97,13 +114,22 @@ public class AddCategoryActivity extends AppCompatActivity {
         if (isUpdating) {
             updateCategory();
         } else {
-            addCategory();
+            addFlower();
         }
     }
-    public void addCategory() {
+    public void addFlower() {
         String name = nameField.getText().toString();
-        String description = descriptionField.getText().toString();
-        if (name.isEmpty() || description.isEmpty()) {
+        double price = 0;
+        try{
+            price = Double.parseDouble(priceField.getText().toString());
+        }catch (Exception e){
+            Toast.makeText(this, "Please enter a valid price", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        String category = spinner.getSelectedItem().toString();
+        String about = aboutField.getText().toString();
+        if (name.isEmpty()|| category.isEmpty() || about.isEmpty()) {
             Toast.makeText(this, "Please fill all the fields", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -112,16 +138,15 @@ public class AddCategoryActivity extends AppCompatActivity {
             return;
         }
 
-        Category category = new Category(name, imgLink, "", description);
+        Flower flower = new Flower(name, imgLink, "", price, category, about);
 
         // Get the Firestore instance
         FirebaseFirestore firestore = FirebaseFirestore.getInstance();
 
-        // Get the reference to the "categories" collection (replace "categories" with your desired collection name)
-        CollectionReference categoriesCollectionRef = firestore.collection("categories");
+        CollectionReference categoriesCollectionRef = firestore.collection("flowers");
 
         // Add the category object to Firestore
-        categoriesCollectionRef.add(category)
+        categoriesCollectionRef.add(flower)
                 .addOnSuccessListener(documentReference -> {
                     Toast.makeText(this, "Category added successfully", Toast.LENGTH_SHORT).show();
                     finish();
@@ -132,8 +157,21 @@ public class AddCategoryActivity extends AppCompatActivity {
     }
     public void updateCategory(){
         String name = nameField.getText().toString();
-        String description = descriptionField.getText().toString();
-        if (name.isEmpty() || description.isEmpty()) {
+        double price = 0;
+        try{
+            price = Double.parseDouble(priceField.getText().toString());
+        }catch (Exception e){
+            Toast.makeText(this, "Please enter a valid price", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        String category = spinner.getSelectedItem().toString();
+        if(category==null){
+            Toast.makeText(this, "Please select a category", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        String about = aboutField.getText().toString();
+        if (name.isEmpty()|| category.isEmpty() || about.isEmpty()) {
             Toast.makeText(this, "Please fill all the fields", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -142,20 +180,20 @@ public class AddCategoryActivity extends AppCompatActivity {
             return;
         }
 
-        Category category = new Category(name, imgLink, "", description);
+        Flower flower = new Flower(name, imgLink, flowerId, price, category, about);
 
         // Get the Firestore instance
         FirebaseFirestore firestore = FirebaseFirestore.getInstance();
 
-        // Get the reference to the "categories" collection (replace "categories" with your desired collection name)
-        CollectionReference categoriesCollectionRef = firestore.collection("categories");
+
+        CollectionReference categoriesCollectionRef = firestore.collection("flowers");
 
         // Add the category object to Firestore
-        categoriesCollectionRef.document(categoryId).set(category)
+        categoriesCollectionRef.document(flowerId).set(flower)
                 .addOnSuccessListener(documentReference -> {
-                    Toast.makeText(this, "Category updated successfully", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Flower updated successfully", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(this, AdminHomeActivity.class);
-                    intent.putExtra("selectedTab", 1); // Assuming the 2nd tab has an index of 1 (0-indexed)
+                    intent.putExtra("selectedTab", 0);
                     startActivity(intent);
                     finish();
                 })

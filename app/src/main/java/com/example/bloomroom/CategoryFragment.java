@@ -5,11 +5,19 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.example.bloomroom.Adaptors.AdminCategoryAdapter;
+import com.example.bloomroom.Adaptors.CategoryAdapter;
+import com.example.bloomroom.Models.Category;
+
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -58,20 +66,28 @@ public class CategoryFragment extends Fragment {
         }
     }
 
+//
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_category, container, false);
-    }
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+        View rootView = inflater.inflate(R.layout.fragment_category, container, false);
+        RecyclerView categoryRecyclerView = rootView.findViewById(R.id.category_list);
 
-        // Find the TextView from the activity layout
-        TextView title = requireActivity().findViewById(R.id.toolbar_title);
-        if (title != null) {
-            title.setText("Categories");
-        }
+        Category.getAllCategories(new Category.CategoryCallback() {
+            @Override
+            public void onCategoriesLoaded(List<Category> categoryList) {
+                categoryRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+                CategoryAdapter categoryAdapter = new CategoryAdapter(categoryList, getContext());
+                categoryRecyclerView.setAdapter(categoryAdapter);
+            }
+
+            @Override
+            public void onFailure(String errorMessage) {
+                // Handle the failure case if needed
+            }
+        });
+
+        return rootView;
     }
 }

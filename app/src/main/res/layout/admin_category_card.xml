@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="88dp"
+    android:layout_margin="16dp"
+    android:background="@drawable/rounded_edittext_background"
+    android:elevation="10dp"
+    android:orientation="horizontal"
+    android:padding="9dp"
+    android:weightSum="11">
+
+    <ImageView
+        android:id="@+id/categoryImage"
+        android:layout_width="36dp"
+        android:layout_height="match_parent"
+        android:layout_weight="2"
+        android:background="@drawable/rounded_edittext_background"
+        android:scaleType="centerCrop"
+        app:srcCompat="@drawable/image_upload_default" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="8dp"
+        android:layout_weight="6"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/category_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_bold"
+            android:text="TextView"
+            android:textSize="24dp" />
+
+        <TextView
+            android:id="@+id/category_data"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_medium"
+            android:text="TextView" />
+    </LinearLayout>
+
+    <LinearLayout
+
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical|end"
+        android:layout_weight="3"
+        android:background="@null"
+        android:orientation="horizontal"
+        >
+
+
+        <ImageButton
+            android:id="@+id/deleteButton"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="1dp"
+
+            android:background="@drawable/rounded_edittext_background"
+            android:backgroundTint="#DE0000"
+            app:srcCompat="@drawable/baseline_delete_24"
+            app:tint="@color/white" />
+
+        <ImageButton
+            android:id="@+id/editButton"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="1dp"
+
+            android:background="@drawable/rounded_edittext_background"
+            android:backgroundTint="#FFD540"
+            app:tint="@color/white"
+            app:srcCompat="@drawable/baseline_edit_24" />
+    </LinearLayout>
+</LinearLayout>
