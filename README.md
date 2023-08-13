@@ -1,4 +1,4 @@
-# "BLOOMROOM" - A Floral E-Commerce Marvel
+# BLOOMROOM
 <center>
   <img src="BLOOMROOM.png" alt="Bloom Room">
 </center>
